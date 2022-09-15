@@ -1,0 +1,309 @@
+1.  // Define a class Complex to represent a complex number. Declare 
+    // instance member variables to store real and imaginary part of a complex 
+    // number, also define instance member functions to set values of complex 
+    // number and print values of complex number
+    #include<iostream>
+    using namespace std;
+    class Complex
+    {
+    private:
+        int i;
+        int j;
+    public:
+        void setdata(int x,int y){
+            this->i=x;
+            this->j=y;
+        }
+        void print(){
+            cout<<i<<" + "<<j<<"i"<<endl;
+        }
+        
+    };
+    int main(int argc, char const *argv[])
+    {
+        Complex c1,c2;
+        c1.setdata(3,5);
+        c2.setdata(2,3);
+        c1.print();
+        c2.print();
+        return 0;
+    }
+
+2.   // Define a class Time to represent Time (like 3 hr 45 min 20 sec). Declare appropriate number of instance member variables and also define instance member functions to set values for time and display values of time.
+    #include<iostream>
+    using namespace std;
+    class Time {
+        private:
+            int hr,min,sec;
+        public:
+            void setTime(int h,int mint=0, int secnd =0){
+                hr=h;
+                min=mint;
+                sec=secnd;
+            }
+            void printTime(){
+                cout<<hr<<" hr "<<min<<" min "<<sec<<" sec"<<endl;
+            }
+    };
+    int main(int argc, char const *argv[])
+    {
+        Time t1;
+        t1.setTime(10,15,30);
+        t1.printTime();
+        return 0;
+    }
+
+3.  // Define a class Factorial and define an instance member function 
+    to find the Factorial of a number using class.
+    #include <iostream>
+    using namespace std;
+    class Factorial
+    {
+    private:
+        int num;
+        int fact;
+
+    public:
+        void setdata(int x) { num = x; }
+        int getFactorial() { return fact; }
+        void factorial();
+    };
+    void Factorial::factorial()
+    {
+        fact = 1;
+        for (int i = num; i >= 1; i--)
+        {
+            fact = fact * i;
+        }
+    }
+    int main(int argc, char const *argv[])
+    {
+        Factorial number;
+        number.setdata(5);
+        number.factorial();
+        cout << "Factorial is :" << number.getFactorial();
+        return 0;
+    }
+
+4.  // Define a class LargestNumber and define an instance member function to find the Largest of three Numbers using the class.
+    #include<iostream>
+    using namespace std;
+    class LargestNumber{
+        private:
+            int x,y,z,largest;
+        public:
+            void setData(int a,int b, int c){
+                x=a;y=b;z=c;
+            }
+            void findLarge(){
+                largest=x>y?(x>z?x:z):(y>z?y:z);
+            }
+            int getLarge(){ return largest;}
+                
+    };
+    int main(int argc, char const *argv[])
+    {
+        LargestNumber num;
+        num.setData(10,25,18);
+        num.findLarge();
+        cout<<"Largest value is : "<<num.getLarge()<<endl;
+        num.setData(109,25,18);
+        num.findLarge();
+        cout<<"Largest value is : "<<num.getLarge()<<endl;
+        num.setData(10,25,180);
+        num.findLarge();
+        cout<<"Largest value is : "<<num.getLarge()<<endl;
+        return 0;
+    }
+
+5.  // Define a class ReverseNumber and define an instance member function to find Reverse of a Number using class.
+    #include <iostream>
+    using namespace std;
+    class ReverseNumber
+    {
+        private:
+            int num,revnum;
+    public:
+        void setNum(int x){ num=x;}
+        void reverseNum()
+        {
+            int ten = 1, temp = num, final = 1;
+            for (int i = i; num / 10; i++)
+            {
+                num /= 10;
+                ten *= 10;
+            }
+            // cout<<"value of ten"<<ten<<endl;
+            int sum = 0;
+            for (int i = 0; temp; i++)
+            {
+                final = temp % 10;
+                final *= ten;
+                sum += final;
+                ten /= 10;
+                temp /= 10;
+                //    cout<<final<<endl;
+                revnum=sum;
+
+            }
+        }
+        int getReverse(){return revnum;}
+    };
+    int main(int argc, char const *argv[])
+    {
+        ReverseNumber num;
+        num.setNum(1445);
+        num.reverseNum();
+        cout<<"reverse number is : "<<num.getReverse()<<endl;
+        return 0;
+    }
+
+6.      // Define a class Square to find the square of a number and write a C++ program to Count number of times a function is called.
+    #include<iostream>
+    using namespace std;
+    class Square{
+        private:
+            static int callCount;
+            int sqr,num;
+        public:
+            void setNum(int x){num =x;}
+            void sqrCalculate(int x){
+                callCount++;
+                sqr = num*num;
+            }
+            int getSqure(){return sqr;}
+            static int NumberOfCall(){
+                return callCount;
+            }
+    };  
+    int Square::callCount=0;
+    int main(int argc, char const *argv[])
+    {
+        
+        Square num;
+        num.setNum(25);
+        cout<<"square is : "<<num.getSqure()<<endl;
+        cout<<"Number of call sqr function is : "<<num.NumberOfCall()<<endl;
+        return 0;
+    }
+
+7.      // Define a class Greatest and define instance member function to find Largest among 3 numbers using classes.
+    #include<iostream>
+    using namespace std;
+    class Greatest{
+        private:
+            int x,y,z,largest;
+        public:
+            void setData(int a,int b, int c){
+                x=a;y=b;z=c;
+            }
+            void findLarge(){
+                largest=x>y?(x>z?x:z):(y>z?y:z);
+            }
+            int getLarge(){ return largest;}
+                
+    };
+    int main(int argc, char const *argv[])
+    {
+        Greatest num;
+        num.setData(10,25,18);
+        num.findLarge();
+        cout<<"Largest value is : "<<num.getLarge()<<endl;
+        num.setData(109,25,18);
+        num.findLarge();
+        cout<<"Largest value is : "<<num.getLarge()<<endl;
+        num.setData(10,25,180);
+        num.findLarge();
+        cout<<"Largest value is : "<<num.getLarge()<<endl;
+        return 0;
+    }
+
+8.      // Define a class Rectangle and define an instance member function to find the area of the rectangle.
+    #include<iostream>
+    using namespace std;
+    class Rectangle{
+        private:
+            int l,b,area;
+        public:
+            void setData(int lenght,int breadth){
+                l=lenght;
+                b=breadth;
+            }
+            void areaCalculat(){
+                area=l*b;
+            }
+            int getAria(){return area;}
+    };
+    int main(int argc, char const *argv[])
+    {
+        Rectangle fild;
+        fild.setData(15,14);
+        fild.areaCalculat();
+        cout<<"area of fild is :"<<fild.getAria()<<endl;
+        return 0;
+    }
+
+9.      // Define a class Circle and define an instance member function to find the area of the circle.
+    #include<iostream>
+    #define PI 3.14
+    using namespace std;
+    class circle{
+        private:
+            int x;
+            int aria;
+        public:
+            void setData(int radias){
+                x=radias;
+            }
+            void areaCalculate(){
+                aria = x*x*PI;
+            } 
+            float getAria(){return aria;}
+    };
+    int main(int argc, char const *argv[])
+    {
+        circle fild;
+        fild.setData(5);
+        fild.areaCalculate();
+        cout<<"area of fild is :"<<fild.getAria()<<endl;
+        return 0;
+    }
+
+10.     // Define a class Area and define instance member functions to find the area of the different shapes like square, rectangle , circle etc.
+    #include <iostream>
+    #define PI 3.14
+    using namespace std;
+    class Area{
+        int ariaOfSquare,ariaOfRectangle,length,breadth,radis,adge;
+        float ariaOfCircle;
+        public:
+        void setDataOfRectangle(int x,int y){ length =x; breadth=y;}
+        void setDataOfCricle(int radias){ radis = radias;}
+        void setDataOfSquare(int x){ adge = x;}
+        void calculateAriaOfsquare(){
+            ariaOfSquare= adge*adge;
+        }
+        void calculateAriaOfrectangle(){
+            ariaOfRectangle = length*breadth;
+        }
+        void calculateAriaOfcircle(){
+            ariaOfCircle = radis*radis*PI;
+        }
+        int getAriaOfCricle(){return ariaOfCircle;}
+        int getAriaOfRectangle(){return ariaOfRectangle;}
+        int getAriaOfSquare(){return ariaOfSquare;}
+    };
+    int main(int argc, char const *argv[])
+    {
+        Area fild;
+        fild.setDataOfCricle(10);
+        fild.setDataOfRectangle(12,14);
+        fild.setDataOfSquare(6);
+        fild.calculateAriaOfcircle();
+        fild.calculateAriaOfrectangle();
+        fild.calculateAriaOfsquare();
+        cout<< "area of square :"<<fild.getAriaOfSquare()<<endl;
+        cout<< "area of rectangle :"<<fild.getAriaOfRectangle()<<endl;
+        cout<< "area of circle :"<<fild.getAriaOfCricle()<<endl;
+        return 0;
+    }
