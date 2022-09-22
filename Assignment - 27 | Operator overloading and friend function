@@ -1,0 +1,644 @@
+1.  /* Define a class Complex with appropriate instance variables and member functions.
+    Define following operators in the class:
+    a. +
+    b. -
+    c. *
+    d. == */
+    #include <iostream>
+    using namespace std;
+    class Complex
+    {
+    private:
+        int real, img;
+
+    public:
+        void setData(int real, int imegnary)
+        {
+            this->real = real;
+            this->img = imegnary;
+        }
+        void showData()
+        {
+            cout << real << " + " << img << 'i' << endl;
+        }
+        Complex() {}
+        Complex(int real, int imegnary)
+        {
+            this->real = real;
+            this->img = imegnary;
+        }
+
+        Complex operator+(Complex c)
+        {
+            Complex temp;
+            temp.real = c.real + real;
+            temp.img = c.img + img;
+            return temp;
+        }
+        Complex operator-(Complex c)
+        {
+            Complex temp;
+            temp.real = real - c.real;
+            temp.img = img - c.img;
+            return temp;
+        }
+        Complex operator*(Complex c)
+        {
+            Complex temp;
+            temp.real = real * c.real - img * c.img;
+            temp.img = real * c.img + img * c.real;
+            return temp;
+        }
+        bool operator==(Complex c)
+        {
+            if (real == c.real && img == c.img)
+            {
+                return true;
+            }
+            return false;
+        }
+    };
+    int main(int argc, char const *argv[])
+    {
+        Complex c1, c2(5, 6), c3;
+        c1.setData(4, 3);
+        c1.showData();
+        c2.showData();
+        c3 = c1 + c2;
+        c3.showData();
+        c3 = c1 - c2;
+        c3.showData();
+        c3 = c1 * c2;
+        c3.showData();
+        if (c1 == c2)
+        {
+            cout << "Both complex nubmer are equal." << endl;
+        }
+        else
+        {
+            cout << "Both complex nubmer are not equal." << endl;
+        }
+        c1.setData(5, 6);
+        if (c1 == c2)
+        {
+            cout << "Both complex nubmer are equal." << endl;
+        }
+        else
+        {
+            cout << "Both complex nubmer are not equal." << endl;
+        }
+        return 0;
+    }
+
+2.      // Write a C++ program to overload unary operators that is increment and decrement.
+    #include <iostream>
+    #include <cstring>
+    using namespace std;
+    class Person
+    {
+    private:
+        char name[20];
+        int age;
+
+    public:
+        Person() {}
+        Person(char name[], int age)
+        {
+            strcpy(this->name, name);
+            this->age = age;
+        }
+        Person operator++()
+        {
+            age++;
+            return *this;
+        }
+        Person operator++(int)
+        {
+            age++;
+            return *this;
+        }
+        Person operator--()
+        {
+            age--;
+            return *this;
+        }
+        Person operator--(int)
+        {
+            age--;
+            return *this;
+        }
+        void showData()
+        {
+            cout << "Name : " << name << " age : " << age << endl;
+        }
+    };
+    int main(int argc, char const *argv[])
+    {
+        Person p1("Manoj", 25), p2("krishan", 20);
+        (++p1).showData();
+        (p1++).showData();
+        (--p2).showData();
+        (p2--).showData();
+        return 0;
+    }
+
+3.      // Write a C++ program to add two complex numbers using operator overloaded by a
+    // friend function.
+    #include <iostream>
+    using namespace std;
+    class Complex
+    {
+    private:
+        int real, img;
+
+    public:
+        void setData(int real, int imegnary)
+        {
+            this->real = real;
+            this->img = imegnary;
+        }
+        void showData()
+        {
+            cout << real << " + " << img << 'i' << endl;
+        }
+        Complex() {}
+        Complex(int real, int imegnary)
+        {
+            this->real = real;
+            this->img = imegnary;
+        }
+
+        friend Complex operator+(Complex c1, Complex c2);
+    };
+    Complex operator+(Complex c1, Complex c2)
+    {
+        Complex temp;
+        temp.real = c1.real + c2.real;
+        temp.img = c1.img + c2.img;
+        return temp;
+    }
+    int main(int argc, char const *argv[])
+    {
+        Complex c1(4, 5), c2, c3;
+        c2.setData(3, 4);
+        c3 = c1 + c2;
+        c3.showData();
+        return 0;
+    }
+
+4.      /*  Create a class Time which contains:
+        - Hours
+        - Minutes
+        - Seconds
+        Write a C++ program using operator overloading for the following:
+        1. = = : To check whether two Times are the same or not.
+        2. >> : To accept the time.
+        3. << : To display the time.
+        Output - */
+    #include <iostream>
+    #include <cstring>
+    using namespace std;
+    class Time
+    {
+    private:
+        int Hours, Minutes, Seconds;
+        char name[20];
+
+    public:
+        Time(char Object_name[])
+        {
+            strcpy(name, Object_name);
+        }
+        bool operator==(Time t)
+        {
+            if (Hours == t.Hours && Minutes == t.Minutes && Seconds == t.Seconds)
+            {
+                return true;
+            }
+            return false;
+        }
+        friend ostream &operator<<(ostream &output, Time t);
+        friend istream &operator>>(istream &input, Time *t);
+    };
+    ostream &operator<<(ostream &output, Time t)
+    {
+        output << t.name << endl;
+        output << "Hours     :" << t.Hours << endl;
+        output << "Minutes   :" << t.Minutes << endl;
+        output << "Seconds  :" << t.Seconds << endl;
+        output << endl;
+        output << endl;
+        return output;
+    }
+    istream &operator>>(istream &input, Time *t)
+    {
+        cout << t->name << endl;
+        cout << "__________" << endl;
+        cout << "\nHours     :";
+        input >> t->Hours;
+        cout << "\nMinutes   :";
+        input >> t->Minutes;
+        cout << "\nSeconds  :";
+        input >> t->Seconds;
+        return input;
+    }
+    int main(int argc, char const *argv[])
+    {
+        Time t1("First time"), t2("Second Time");
+        cin >> &t1 >> &t2;
+        cout << t1 << t2;
+        if (t1 == t2)
+            cout << "both time are same" << endl;
+        else
+            cout << "both time are not same" << endl;
+
+        return 0;
+    }
+
+5.      /*  Consider following class Numbers
+        class Numbers
+        {
+        int x,y,z;
+        public:
+        // methods
+        };
+        Overload the operator unary minus (-) to negate the numbers.
+    */
+    #include <iostream>
+    using namespace std;
+    class Numbers
+    {
+        int x, y, z;
+
+    public:
+        Numbers() {}
+        Numbers(int a, int b, int c)
+        {
+            x = a;
+            y = b;
+            z = c;
+        }
+        void setData(int a, int b, int c)
+        {
+            x = a;
+            y = b;
+            z = c;
+        }
+        void showData()
+        {
+            cout << "x = " << x << " y = " << y << " z = " << z << endl;
+        }
+        Numbers operator-()
+        {
+            x = -x;
+            y = -y;
+            z = -z;
+            return *this;
+        }
+    };
+    int main(int argc, char const *argv[])
+    {
+        Numbers num1(2, 3, 5), num2;
+        num2.setData(4, 6, 7);
+        num1.showData();
+        num2.showData();
+        -num1;
+        num1.showData();
+        Numbers num3 = (-num2);
+        num3.showData();
+        return 0;
+    }
+
+6.      /*  Create a class CString to represent a string.
+        a) Overload the + operator to concatenate two strings.
+        b) == to compare 2 strings.
+    */
+    #include <iostream>
+    #include <cstring>
+    using namespace std;
+    class CString{
+        private:
+            char *str;
+            int size;
+        public:
+            CString(){
+                str=(char*)malloc(1);
+            }
+            CString(char* p){
+                size= strlen(p);
+                str=(char*)malloc(size+1);
+                strcpy(str,p);
+            }
+            void printString(){
+                cout<<str<<endl;
+            }
+            void setString(char* p){
+                size= strlen(p);
+                free(str);
+                str=(char*)malloc(size+1);
+                strcpy(str,p);
+            }
+            CString operator+(CString st){
+                CString temp;
+                temp.size = strlen(str) + strlen(st.str);
+                free(temp.str);
+                temp.str = (char *)malloc(temp.size+1);
+                strcpy(temp.str,str);
+                strcat(temp.str,st.str);
+                return temp;
+            }
+            bool operator==(CString temp){
+                switch (strcmp(str,temp.str))
+                {
+                case 0:
+                    return true;
+                    break;
+                
+                default:
+                    return false;
+                }
+            }
+            void operator=(CString st){
+                    CString temp;
+                    if(str==st.str)
+                        return;
+                    temp.size=strlen(st.str);
+                    temp.str=(char*)malloc(size+1);
+                    strcpy(str,st.str);
+            }
+    };
+    int main(int argc, char const *argv[])
+    {
+        CString str1,str2("Manoj Jyani");
+        str1.setString("Krishan Jyani");
+        if (str1==str2)
+        {
+            cout<<"Both String are equal"<<endl;
+        }
+        else
+        {
+            cout<<"Both String are not equal"<<endl;
+        }
+        CString str3;
+        str3=str1+str2;
+        str3.printString();
+        return 0;
+    }
+
+7.      /*  Define a C++ class fraction
+        class fraction
+        {
+        long numerator;
+        long denominator;
+        Public:
+        fraction (long n=0, long d=0);
+        }
+        Overload the following operators as member or friend:
+        a) Unary ++ (pre and post both)
+        b) Overload as friend functions: operators << and >>.
+    */
+    #include <iostream>
+    using namespace std;
+    class fraction
+    {
+    private:
+        long numerator;
+        long denominator;
+
+    public:
+        fraction(long n = 0, long d = 0)
+        {
+            numerator = n;
+            denominator = d;
+        }
+        fraction operator++()
+        {
+            ++numerator;
+            ++denominator;
+            return *this;
+        }
+        // fraction operator++(int)
+        // {
+        //     numerator++;
+        //     denominator++;
+        //     return *this;
+        // }
+        // friend fraction operator++(fraction);
+        friend fraction operator++(fraction, int);
+        friend ostream &operator<<(ostream &, fraction);
+        friend istream &operator>>(istream &, fraction*);
+    };
+    // fraction operator++(fraction num)
+    // {
+    //     ++(num.numerator);
+    //     ++(num.denominator);
+    //     return num;
+    // }
+    fraction operator++(fraction num, int)
+    {
+        num.numerator++;
+        num.denominator++;
+        return num;
+    }
+    ostream &operator<<(ostream &out, fraction num)
+    {
+        out << num.numerator << "/" << num.denominator<<endl;
+        return out;
+    }
+    istream &operator>>(istream &input, fraction *num)
+    {
+        input >> num->numerator >> num->denominator;
+        return input;
+    }
+
+    int main(int argc, char const *argv[])
+    {
+        fraction num1(5, 7), num2(3, 4), num3(0, 0);
+        cout << num1 ;
+        cout << num1++;
+        cout << ++num1;
+        cin >> &num3;
+        cout << num3;
+        cout<<num1;
+
+
+        return 0;
+    }
+
+8.      /*  Consider a class Matrix
+        Class Matrix
+        {
+        int a[3][3];
+        Public:
+        //methods;
+        };
+        Overload the - (Unary) should negate the numbers stored in the object.
+    */
+    #include<iostream>
+    using namespace std;
+    class Matrix{
+        private:
+            int a[3][3];
+        
+        public:
+            friend istream& operator>>(istream&,Matrix *);
+            Matrix operator-(){
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        a[i][j]=-a[i][j];
+                    }
+                } 
+                return *this;
+            }
+            friend ostream& operator<<(ostream& out,Matrix M);
+    };
+    ostream& operator<<(ostream& out,Matrix M)
+    {
+        cout<<"Matrix is :"<<endl;
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                cout<<M.a[i][j]<<"   ";
+            }
+            cout<<endl;
+        } 
+        return out;
+    }
+    istream& operator>>(istream& in,Matrix *M){
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                cin>>M->a[i][j];
+            }
+        } 
+        return in;
+    }
+    int main(int argc, char const *argv[])
+    {
+        Matrix matrix;
+        cin>>&matrix;
+        cout<<matrix;
+        -matrix;
+        cout<<matrix;
+        
+        return 0;
+    }
+
+9.      /*  Consider the following class mystring
+        Class mystring
+        {
+        char str [100];
+        Public:
+        // methods
+        };
+        Overload operator “!” to reverse the case of each alphabet in the string
+        (Uppercase to Lowercase and vice versa).
+    */
+    #include<iostream>
+    #include<cstring>
+    using namespace std;
+    class mystring{
+        private:
+            char str[100];
+        
+        public:
+            mystring(){}
+            mystring(char string[]){
+                strcpy(str,string);
+            }
+            mystring operator!(){
+                int size=strlen(str);
+                for (int i = 0; i < size+1; i++)
+                {
+                    if (str[i]>=65&&str[i]<=90)
+                    {
+                        str[i]=str[i]+32;
+                    }
+                    else if(str[i]>=97&&str[i]<=123){
+                        str[i]=str[i]-32;
+                    }
+                
+                }
+                
+            }
+            void showString(){
+                cout<<str;
+            }
+    };
+    int main(int argc, char const *argv[])
+    {
+        mystring str("Manoj Jyani");
+        !str;
+        str.showString();
+        return 0;
+    }
+
+10.     /*  Class Matrix
+        {
+        int a[3][3];
+        Public:
+        //methods;
+        };
+        Let m1 and m2 are two matrices. Find out m3=m1+m2 (use operator
+        overloading).
+    */
+    #include<iostream>
+    using namespace std;
+    class Matrix{
+        private:
+            int a[3][3];
+        
+        public:
+            friend istream& operator>>(istream&,Matrix *);
+            Matrix operator+(Matrix m){
+                cout<<*this<<m;
+                Matrix temp;
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        temp.a[i][j]=a[i][j]+m.a[i][j];
+                    }
+                }
+                
+                return temp;
+            }
+            friend ostream& operator<<(ostream& out,Matrix M);
+    };
+    ostream& operator<<(ostream& out,Matrix M)
+    {
+        cout<<"Matrix is :"<<endl;
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                cout<<M.a[i][j]<<"   ";
+            }
+            cout<<endl;
+        } 
+        return out;
+    }
+    istream& operator>>(istream& in,Matrix *M){
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                cin>>M->a[i][j];
+            }
+        } 
+        cout<<"Matrix completed"<<endl;
+        return in;
+    }
+    int main(int argc, char const *argv[])
+    {
+        Matrix m1,m2,m3;
+        cin>>&m1>>&m2;
+        m3=m1+m2;
+        cout<<m3;
+        
+        return 0;
+    }
