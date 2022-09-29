@@ -1,0 +1,339 @@
+1.  /*  Write a C++ program to demonstrate the use of try, catch block with the argument 
+        as an integer and string using multiple catch blocks.
+    */
+    #include<iostream>
+    using namespace std;
+    int main(int argc, char const *argv[])
+    {
+        int x,y,z;
+        char name[20];
+        try
+        {
+            cin>>x>>y;
+            if (x<0||y<0)
+            {
+                throw "your enterd value is non positve values";
+            }
+            if (x>y)
+            {
+                throw y;
+            }
+            
+        }
+        catch(const char str[])
+        {
+            cout<<str<<endl;
+        }
+        catch(int y){
+            cout<<y<<" is too smalar we cannt use it "<<endl;
+        }
+        return 0;
+    }
+
+2.  // Write a C++ program to demonstrate try, throw and catch statements.
+    #include<iostream>
+    using namespace std;
+    int main(int argc, char const *argv[])
+    {
+        int x,y;
+        cout<<"Enter two value :";
+        cin>>x>>y;
+        try
+        {
+            if (x>100||y>100)
+            {
+                throw "Your value is smaller then 100";
+            }
+            else
+            cout<<"Your values is prefet to maintain for us. first is :"<<x<<" second is :"<<y<<endl;
+            
+        }
+        catch(const char str[])
+        {
+            cout<<str<<endl;
+        }
+        
+        return 0;
+    }
+
+3.  /*  Write a C++ program to perform arithmetic operations on two numbers and throw an
+        exception if the dividend is zero or does not contain an operator.
+    */
+    #include<iostream>
+    using namespace std;
+    int main(int argc, char const *argv[])
+    {
+        long numerator, denominator;
+        cout<<"Enter the Numerator and Denominator:";
+        cin>>numerator>>denominator;
+        try
+        {
+            if (denominator ==0)
+            {
+                throw "You cann't Enter denominaoter value is ZERO ";
+            }
+            else
+            {
+                cout<<"Fraction is :"<<numerator/denominator<<endl;
+            }
+        }
+        catch(const char str[])
+        {
+            cout<<str<<endl;
+        }
+        
+        return 0;
+    }
+
+4.  // Write a C++ program to accept an email address and throw an exception if it does not contain @ symbol.
+    #include<iostream>
+    using namespace std;
+    int main(int argc, char const *argv[])
+    {
+        char mail[50];
+        cout<<"Enter your Email adderess :";
+        cin>>mail;
+        try
+        {
+            int flage=0;
+            for (int i = 0;mail[i]; i++)
+            {
+                if (mail[i]=='@')
+                {
+                    flage++;
+                }
+            }
+            if (flage==0)
+            {
+                throw "Enter a valid Email address";
+            }
+            else
+                cout<<"Your email is vallid ok thanks"<<endl;
+        }
+        catch(const char str[])
+        {
+            cout<<str<<endl;
+        }
+        
+        return 0;
+    }
+
+5.  // Write a C++ program to accept a mobile number and throw an exception if it does not contain 10 digits.
+    #include<iostream>
+    #include<cstring>
+    using namespace std;
+    int main(int argc, char const *argv[])
+    {
+        char mobNum[13];
+        cout<<"Enter your Mobile Number :";
+        cin>>mobNum;
+        try
+        {
+        int flage=0;
+            
+            if (strlen(mobNum)!=10)
+            {
+                throw "Enter a valid 10 digigt mobile number ...";
+            }
+            else
+                cout<<"Your Mobile number is : "<<mobNum<<endl;
+        }
+        catch(const char str[])
+        {
+            cout<<str<<endl;
+        }
+        
+        return 0;
+    }
+
+6.  // Write a C++ program to accept area pin code and throw an exception if it does not contain 6 digits.
+    #include<iostream>
+    #include<cstring>
+    using namespace std;
+    int main(int argc, char const *argv[])
+    {
+        char pinCode[10];
+        cout<<"Enter your pin code Number :";
+        cin>>pinCode;
+        try
+        {
+        int flage=0;
+            
+            if (strlen(pinCode)!=6)
+            {
+                throw "Enter a valid 6 digit pin code number ...";
+            }
+            else
+                cout<<"Your pin code is : "<<pinCode<<endl;
+        }
+        catch(const char str[])
+        {
+            cout<<str<<endl;
+        }
+        
+        return 0;
+    }
+
+7.  /*  Write a C++ program to accept a username if the username has less than 6 characters
+        or does contain any digit or special symbol.
+    */
+    #include <iostream>
+    #include <cstring>
+    using namespace std;
+    int main(int argc, char const *argv[])
+    {
+        char username[20];
+        cout << "Enter your username :";
+        cin >> username;
+        int flage =0,size=strlen(username);
+        for (size_t i = 0; i < size; i++)
+        {
+            if (((username[i] >= 'A' && username[i] <= 'Z') || (username[i] >= 'a' && username[i] <= 'z')))
+            {
+                flage++;
+            }
+        }
+        try
+        {
+            if ((size==flage))
+            {
+                cout << "Your username is : " << username << endl;
+            }
+            else
+                throw "Enter a valid username ...";
+        }
+        catch (const char str[])
+        {
+            cout << str << endl;
+        }
+
+        return 0;
+    }
+
+8.  /*  Write a C++ program to accept a password and throw an exception if the password has
+        less than 6 characters or does not contain a digit or does not contain any special
+        character or does not contain any capital letter.
+    */
+    #include<iostream>
+    #include<cstring>
+    using namespace std;
+
+    int main(int argc, char const *argv[])
+    {
+        char passward[20];
+        int digitFlage=0,spCharFlage=0,capitalFlage=0,smallFlage=0;
+        cout<<"Enter your passward :";
+        cin>>passward;
+        int size=strlen(passward);
+        for (int i = 0; i < size; i++)
+        {
+            if ((passward[i] >= 'A') &&( passward[i] <= 'Z'))
+            {
+                capitalFlage=1;
+            }
+            if (((passward[i] >= 32) &&( passward[i] <= 47))||((passward[i] >= 58) &&( passward[i] <= 64)))
+            {
+                spCharFlage=1;
+            }
+            if ((passward[i] >= '0') &&( passward[i] <= '9'))
+            {
+                digitFlage=1;
+            }
+            if ((passward[i] >= 'a') &&( passward[i] <= 'z'))
+            {
+                smallFlage=1;
+            }
+        }
+        try
+        {
+            if(!(digitFlage&&capitalFlage&&spCharFlage&&smallFlage))
+            {
+                throw "Your passward is not in proper formate....";
+            }
+            else{
+                cout<<"Your passward is good"<<endl;
+            }
+        }
+        catch(const char str[])
+        {
+            cout<<str<<endl;
+        }
+        
+        return 0;
+    }
+
+9.  // Write a C++ program to accept Gmail id only and throw an exception if the id does not contain @ and gmail.com.
+    #include <iostream>
+    #include <cstring>
+    using namespace std;
+    int main(int argc, char const *argv[])
+    {
+        char gamil[20];
+        cout << "Enter your gmail :";
+        cin >> gamil;
+        char *x=NULL;
+        x=strchr(gamil,'@');
+        char *y=NULL;
+        y = strstr(gamil,"gmail.com");
+        try
+        {
+            if (x&&y)
+            {
+                cout << "Your gamil is : " << gamil << endl;
+            }
+            else
+                throw "Enter a valid gamil ...";
+        }
+        catch (const char str[])
+        {
+            cout << str << endl;
+        }
+
+        return 0;
+    }
+
+10. /*  10. Write a C++ program to accept Nickname and throw an exception if it has greater than 8
+        characters or does contain a digit or special symbol or space.
+    */
+    #include <iostream>
+    #include <cstring>
+    using namespace std;
+    int main(int argc, char const *argv[])
+    {
+        char nikname[20];
+        cout << "Enter your Nickname :";
+        cin >> nikname;
+        int size= strlen(nikname);
+        int spCharFlage=1,digitFlage=1;
+        for (int i = 0; i < size; i++)
+        {
+            if (((nikname[i] >= 32) &&( nikname[i] <= 47))||((nikname[i] >= 58) &&( nikname[i] <= 64)))
+            {
+                spCharFlage=0;
+            }
+            if ((nikname[i] >= '0') &&( nikname[i] <= '9'))
+            {
+                digitFlage=0;
+            }
+        }
+        try
+        {   
+            if (size>=8)
+            {
+                throw "Your nickname size is too large";
+            }
+            
+            if (spCharFlage&&digitFlage)
+            {
+                cout << "Your Nickname is : " << nikname << endl;
+            }
+            else
+                throw "Enter a valid nickname ...";
+        }
+        catch (const char str[])
+        {
+            cout << str << endl;
+        }
+
+        return 0;
+    }
